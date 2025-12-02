@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вариации полей ввода - Test Samples</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .input-wrapper {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Пример 1: Стандартное поле с рамкой */
+        .input-standard {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-standard:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 2: Поле без рамки, только лейбл */
+        .input-no-border {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid transparent;
+            background: transparent;
+            font-size: 1rem;
+            transition: border-bottom-color 0.3s;
+        }
+
+        .input-no-border:focus {
+            outline: none;
+            border-bottom-color: #667eea;
+        }
+
+        .label-no-border {
+            display: block;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        /* Пример 3: Поле с нижним подчеркиванием */
+        .input-underline {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 2px solid #ddd;
+            background: transparent;
+            font-size: 1rem;
+            transition: border-bottom-color 0.3s;
+        }
+
+        .input-underline:focus {
+            outline: none;
+            border-bottom-color: #667eea;
+        }
+
+        .label-underline {
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        /* Пример 4: Лейбл слева */
+        .input-label-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .input-label-left label {
+            min-width: 120px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .input-label-left input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-label-left input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 5: Лейбл сверху */
+        .input-label-top {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-label-top label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-label-top input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-label-top input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 6: Лейбл справа */
+        .input-label-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-direction: row-reverse;
+        }
+
+        .input-label-right label {
+            min-width: 120px;
+            color: #666;
+            font-size: 0.95rem;
+            text-align: right;
+        }
+
+        .input-label-right input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-label-right input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 7: Лейбл снизу */
+        .input-label-bottom {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .input-label-bottom label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .input-label-bottom input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-label-bottom input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 8: Поле с иконкой слева */
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon::before {
+            content: "📧";
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 12px 15px 12px 50px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 9: Поле с иконкой справа */
+        .input-icon-right {
+            position: relative;
+        }
+
+        .input-icon-right::after {
+            content: "✓";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        .input-icon-right input {
+            width: 100%;
+            padding: 12px 50px 12px 15px;
+            border: 2px solid #4caf50;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-icon-right input:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+
+        /* Пример 10: Поле с закругленными углами */
+        .input-rounded {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-rounded:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 11: Поле с тенью */
+        .input-shadow {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .input-shadow:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Пример 12: Поле с градиентной рамкой */
+        .input-gradient-border {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #667eea, #764ba2) border-box;
+            font-size: 1rem;
+        }
+
+        .input-gradient-border:focus {
+            outline: none;
+        }
+
+        /* Пример 13: Минималистичное поле */
+        .input-minimal {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 1px solid #e0e0e0;
+            background: transparent;
+            font-size: 1rem;
+            transition: border-bottom-color 0.3s;
+        }
+
+        .input-minimal:focus {
+            outline: none;
+            border-bottom-color: #333;
+        }
+
+        /* Пример 14: Поле с placeholder как лейбл */
+        .input-placeholder-label {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-placeholder-label:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 15: Поле с анимированной рамкой */
+        .input-animated-border {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .input-animated-border:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Пример 16: Поле с внутренней тенью */
+        .input-inset {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #f9f9f9;
+        }
+
+        .input-inset:focus {
+            outline: none;
+            background: white;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Пример 17: Поле с двойной рамкой */
+        .input-double-border {
+            width: 100%;
+            padding: 12px 15px;
+            border: 3px double #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .input-double-border:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 18: Поле с пунктирной рамкой */
+        .input-dashed {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px dashed #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .input-dashed:focus {
+            outline: none;
+            border-color: #667eea;
+            border-style: solid;
+        }
+
+        /* Пример 19: Поле с подписью снизу */
+        .input-with-hint {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-with-hint:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .hint-text {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Пример 20: Поле с подписью сверху */
+        .input-with-description {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .input-with-description:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .description-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        /* Пример 21: Поле без видимых границ, только фон */
+        .input-bg-only {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f5f5f5;
+            transition: background 0.3s;
+        }
+
+        .input-bg-only:focus {
+            outline: none;
+            background: #e8e8e8;
+        }
+
+        /* Пример 22: Поле с толстой рамкой */
+        .input-thick-border {
+            width: 100%;
+            padding: 12px 15px;
+            border: 4px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-thick-border:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 23: Поле с цветной рамкой */
+        .input-colored {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ff6b6b;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-colored:focus {
+            outline: none;
+            border-color: #ee5a6f;
+        }
+
+        /* Пример 24: Поле с лейблом внутри (floating label) */
+        .input-floating-label {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-floating-label input {
+            width: 100%;
+            padding: 18px 15px 8px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-floating-label input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-floating-label label {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .input-floating-label input:focus + label,
+        .input-floating-label input:not(:placeholder-shown) + label {
+            top: 8px;
+            font-size: 0.75rem;
+            color: #667eea;
+        }
+
+        /* Пример 25: Поле с лейблом и иконкой */
+        .input-label-icon {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-label-icon label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-label-icon input {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-label-icon input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 26: Поле с рамкой только при фокусе */
+        .input-focus-only {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f5f5f5;
+            transition: all 0.3s;
+        }
+
+        .input-focus-only:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+
+        /* Пример 27: Поле с закругленными углами только сверху */
+        .input-rounded-top {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px 8px 0 0;
+            font-size: 1rem;
+        }
+
+        .input-rounded-top:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Пример 28: Поле с рамкой и подписью справа */
+        .input-with-right-hint {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-with-right-hint input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-with-right-hint input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .right-hint {
+            font-size: 0.85rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /* Пример 29: Поле с рамкой и подписью слева */
+        .input-with-left-hint {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-with-left-hint input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .input-with-left-hint input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .left-hint {
+            font-size: 0.85rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /* Пример 30: Поле с рамкой только снизу и сверху */
+        .input-top-bottom {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-top: 2px solid #ddd;
+            border-bottom: 2px solid #ddd;
+            font-size: 1rem;
+            background: transparent;
+        }
+
+        .input-top-bottom:focus {
+            outline: none;
+            border-top-color: #667eea;
+            border-bottom-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← Назад</a>
+
+        <div class="examples-grid">
+            <!-- Пример 1: Стандартное поле с рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-standard" placeholder="Введите текст">
+            </div>
+
+            <!-- Пример 2: Поле без рамки, только лейбл -->
+            <div class="input-wrapper">
+                <label class="label-no-border">Имя пользователя</label>
+                <input type="text" class="input-no-border" placeholder="Введите имя">
+            </div>
+
+            <!-- Пример 3: Поле с нижним подчеркиванием -->
+            <div class="input-wrapper">
+                <label class="label-underline">Email</label>
+                <input type="email" class="input-underline" placeholder="example@mail.com">
+            </div>
+
+            <!-- Пример 4: Лейбл слева -->
+            <div class="input-wrapper">
+                <div class="input-label-left">
+                    <label>Телефон:</label>
+                    <input type="tel" placeholder="+7 (999) 123-45-67">
+                </div>
+            </div>
+
+            <!-- Пример 5: Лейбл сверху -->
+            <div class="input-wrapper">
+                <div class="input-label-top">
+                    <label>Пароль</label>
+                    <input type="password" placeholder="Введите пароль">
+                </div>
+            </div>
+
+            <!-- Пример 6: Лейбл справа -->
+            <div class="input-wrapper">
+                <div class="input-label-right">
+                    <label>Сумма:</label>
+                    <input type="number" placeholder="0">
+                </div>
+            </div>
+
+            <!-- Пример 7: Лейбл снизу -->
+            <div class="input-wrapper">
+                <div class="input-label-bottom">
+                    <label>Комментарий</label>
+                    <input type="text" placeholder="Ваш комментарий">
+                </div>
+            </div>
+
+            <!-- Пример 8: Поле с иконкой слева -->
+            <div class="input-wrapper">
+                <div class="input-with-icon">
+                    <input type="email" placeholder="Email адрес">
+                </div>
+            </div>
+
+            <!-- Пример 9: Поле с иконкой справа -->
+            <div class="input-wrapper">
+                <div class="input-icon-right">
+                    <input type="text" placeholder="Проверено" value="Валидное значение">
+                </div>
+            </div>
+
+            <!-- Пример 10: Поле с закругленными углами -->
+            <div class="input-wrapper">
+                <input type="text" class="input-rounded" placeholder="Поиск...">
+            </div>
+
+            <!-- Пример 11: Поле с тенью -->
+            <div class="input-wrapper">
+                <input type="text" class="input-shadow" placeholder="Введите текст">
+            </div>
+
+            <!-- Пример 12: Поле с градиентной рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-gradient-border" placeholder="Красивая рамка">
+            </div>
+
+            <!-- Пример 13: Минималистичное поле -->
+            <div class="input-wrapper">
+                <input type="text" class="input-minimal" placeholder="Минимализм">
+            </div>
+
+            <!-- Пример 14: Поле с placeholder как лейбл -->
+            <div class="input-wrapper">
+                <input type="text" class="input-placeholder-label" placeholder="Введите ваше имя">
+            </div>
+
+            <!-- Пример 15: Поле с анимированной рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-animated-border" placeholder="При фокусе появляется тень">
+            </div>
+
+            <!-- Пример 16: Поле с внутренней тенью -->
+            <div class="input-wrapper">
+                <input type="text" class="input-inset" placeholder="Вдавленное поле">
+            </div>
+
+            <!-- Пример 17: Поле с двойной рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-double-border" placeholder="Двойная рамка">
+            </div>
+
+            <!-- Пример 18: Поле с пунктирной рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-dashed" placeholder="Пунктирная рамка">
+            </div>
+
+            <!-- Пример 19: Поле с подписью снизу -->
+            <div class="input-wrapper">
+                <input type="text" class="input-with-hint" placeholder="Введите текст">
+                <div class="hint-text">Это подсказка под полем ввода</div>
+            </div>
+
+            <!-- Пример 20: Поле с подписью сверху -->
+            <div class="input-wrapper">
+                <div class="description-text">Описание поля ввода</div>
+                <input type="text" class="input-with-description" placeholder="Введите значение">
+            </div>
+
+            <!-- Пример 21: Поле без видимых границ, только фон -->
+            <div class="input-wrapper">
+                <input type="text" class="input-bg-only" placeholder="Только фон">
+            </div>
+
+            <!-- Пример 22: Поле с толстой рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-thick-border" placeholder="Толстая рамка">
+            </div>
+
+            <!-- Пример 23: Поле с цветной рамкой -->
+            <div class="input-wrapper">
+                <input type="text" class="input-colored" placeholder="Красная рамка">
+            </div>
+
+            <!-- Пример 24: Поле с лейблом внутри (floating label) -->
+            <div class="input-wrapper">
+                <div class="input-floating-label">
+                    <input type="text" placeholder=" ">
+                    <label>Плавающий лейбл</label>
+                </div>
+            </div>
+
+            <!-- Пример 25: Поле с лейблом и иконкой -->
+            <div class="input-wrapper">
+                <div class="input-label-icon">
+                    <label>🔒 Пароль</label>
+                    <input type="password" placeholder="Введите пароль">
+                </div>
+            </div>
+
+            <!-- Пример 26: Поле с рамкой только при фокусе -->
+            <div class="input-wrapper">
+                <input type="text" class="input-focus-only" placeholder="Рамка появится при фокусе">
+            </div>
+
+            <!-- Пример 27: Поле с закругленными углами только сверху -->
+            <div class="input-wrapper">
+                <input type="text" class="input-rounded-top" placeholder="Закругление сверху">
+            </div>
+
+            <!-- Пример 28: Поле с рамкой и подписью справа -->
+            <div class="input-wrapper">
+                <div class="input-with-right-hint">
+                    <input type="text" placeholder="Введите значение">
+                    <span class="right-hint">шт.</span>
+                </div>
+            </div>
+
+            <!-- Пример 29: Поле с рамкой и подписью слева -->
+            <div class="input-wrapper">
+                <div class="input-with-left-hint">
+                    <span class="left-hint">₽</span>
+                    <input type="number" placeholder="0">
+                </div>
+            </div>
+
+            <!-- Пример 30: Поле с рамкой только снизу и сверху -->
+            <div class="input-wrapper">
+                <input type="text" class="input-top-bottom" placeholder="Рамка сверху и снизу">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
