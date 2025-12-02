@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Samples - Тестовые Примеры</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .tag.timing {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tag.performance {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .tag.loading {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Test Samples</h1>
+            <p class="subtitle">Коллекция тестовых примеров для проверки функциональности</p>
+        </header>
+
+        <div class="cards-grid">
+            <!-- Пример 1: Задержка загрузки элементов -->
+            <a href="delayed-elements/" class="card">
+                <div class="card-icon">⏱️</div>
+                <h2 class="card-title">Задержка загрузки элементов</h2>
+                <p class="card-description">
+                    Страница с элементами, которые загружаются последовательно с разными задержками: 
+                    от 5 до 70 секунд.
+                </p>
+                <div class="card-tags">
+                    <span class="tag timing">Тайминги</span>
+                    <span class="tag loading">Загрузка</span>
+                    <span class="tag performance">Производительность</span>
+                </div>
+            </a>
+
+            <!-- Заглушка для будущих примеров -->
+            <div class="card" style="opacity: 0.5; cursor: default;" onclick="event.preventDefault()">
+                <div class="card-icon">🚧</div>
+                <h2 class="card-title">Скоро...</h2>
+                <p class="card-description">
+                    Здесь появятся новые тестовые примеры
+                </p>
+                <div class="card-tags">
+                    <span class="tag">В разработке</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Test Samples | GitHub Pages</p>
+        </footer>
+    </div>
+</body>
+</html>
+
