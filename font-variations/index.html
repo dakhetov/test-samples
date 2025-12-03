@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вариации шрифтов - Test Samples</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 15px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 0.85rem;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .text-variations {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            overflow: visible;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .text-block {
+            color: #333;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .text-line {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Разные шрифты - креативные и сложные варианты */
+        .font-1 { 
+            font-family: 'Garamond', 'Baskerville', 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif; 
+            font-style: italic;
+            font-weight: 500;
+        }
+        .font-2 { 
+            font-family: 'Brush Script MT', 'Brush Script Std', cursive; 
+            font-style: italic;
+        }
+        .font-3 { 
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', monospace; 
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .font-4 { 
+            font-family: 'Georgia', 'Times', 'Times New Roman', serif; 
+            font-variant: small-caps;
+            font-weight: 600;
+        }
+        .font-5 { 
+            font-family: 'Palatino Linotype', 'Book Antiqua', 'Palatino', 'URW Palladio L', serif; 
+            font-style: italic;
+            font-weight: 500;
+        }
+        .font-6 { 
+            font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Arial, sans-serif; 
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .font-7 { 
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive; 
+            font-weight: bold;
+        }
+        .font-8 { 
+            font-family: 'Impact', 'Charcoal', 'Arial Black', sans-serif; 
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .font-9 { 
+            font-family: 'Lucida Console', 'Monaco', 'Consolas', 'Courier New', monospace; 
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .font-10 { 
+            font-family: 'Bookman Old Style', 'Book Antiqua', 'Palatino', serif; 
+            font-style: italic;
+            font-weight: 500;
+        }
+        .font-11 { 
+            font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif; 
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .font-12 { 
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow Bold', 'Arial', sans-serif; 
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+        .font-13 { 
+            font-family: 'Goudy Old Style', 'Goudy Stout', 'Garamond', serif; 
+            font-style: italic;
+            font-weight: 500;
+        }
+        .font-14 { 
+            font-family: 'Lucida Handwriting', 'Lucida Calligraphy', cursive; 
+            font-style: italic;
+        }
+        .font-15 { 
+            font-family: 'MS Gothic', 'MS PGothic', 'MS UI Gothic', monospace; 
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .font-16 { 
+            font-family: 'Perpetua', 'Perpetua Titling MT', 'Big Caslon', serif; 
+            font-weight: 600;
+            font-variant: small-caps;
+        }
+        .font-17 { 
+            font-family: 'Rockwell', 'Rockwell Extra Bold', 'Courier New', serif; 
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .font-18 { 
+            font-family: 'Tahoma', 'Geneva', 'Verdana', sans-serif; 
+            font-weight: bold;
+            letter-spacing: 0.8px;
+        }
+        .font-19 { 
+            font-family: 'Verdana', 'Geneva', 'DejaVu Sans', sans-serif; 
+            font-weight: 600;
+            letter-spacing: 1.2px;
+        }
+        .font-20 { 
+            font-family: 'Bodoni MT', 'Bodoni 72', 'Didot', serif; 
+            font-style: italic;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .output-field {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-field h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .output-textarea {
+            width: 100%;
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            resize: none;
+            color: #333;
+            background: #fafafa;
+            overflow-y: auto;
+        }
+
+        .output-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← Назад</a>
+
+        <div class="text-variations">
+            <div class="text-block">
+                <span class="text-line font-1">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-2">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-3">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-4">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-5">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-6">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-7">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-8">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-9">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-10">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-11">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-12">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-13">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-14">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-15">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-16">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-17">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-18">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-19">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+                <span class="text-line font-20">съешь ещё съешь же ещё этих мягких французских булок да выпить чаю</span>
+            </div>
+        </div>
+
+        <div class="output-field">
+            <h2>Поле для вывода</h2>
+            <textarea class="output-textarea" id="outputTextarea" placeholder="Здесь будет выводиться текст..."></textarea>
+        </div>
+    </div>
+</body>
+</html>
+
