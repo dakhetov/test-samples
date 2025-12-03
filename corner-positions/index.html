@@ -50,17 +50,24 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            min-height: 500px;
         }
 
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f0f0;
+        }
+
+        .inner-container {
+            position: relative;
+            min-height: 600px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+            overflow: hidden;
         }
 
         .corner-button {
@@ -76,9 +83,99 @@
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 10;
         }
 
         .corner-button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Стили для дополнительных элементов */
+        .noise-element {
+            position: absolute;
+            font-family: inherit;
+        }
+
+        .noise-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .noise-button-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .noise-button-large {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .noise-input {
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 13px;
+            width: 150px;
+        }
+
+        .noise-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .noise-label {
+            font-size: 13px;
+            color: #495057;
+            margin-left: 8px;
+        }
+
+        .noise-text {
+            font-size: 13px;
+            color: #6c757d;
+            padding: 5px 10px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+
+        .noise-card {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+            color: #495057;
+        }
+
+        /* Кнопки, похожие на угловые (для "шума") */
+        .noise-corner-like {
+            position: absolute;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 5;
+        }
+
+        .noise-corner-like:hover {
             background: #5568d3;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -163,10 +260,87 @@
 
         <div class="section">
             <h2 class="section-title">Кнопки в углах контейнера</h2>
-            <button class="corner-button corner-top-left" onclick="showNotification('Клик по кнопке в левом верхнем углу')">Кнопка</button>
-            <button class="corner-button corner-top-right" onclick="showNotification('Клик по кнопке в правом верхнем углу')">Кнопка</button>
-            <button class="corner-button corner-bottom-left" onclick="showNotification('Клик по кнопке в левом нижнем углу')">Кнопка</button>
-            <button class="corner-button corner-bottom-right" onclick="showNotification('Клик по кнопке в правом нижнем углу')">Кнопка</button>
+            <div class="inner-container">
+                <!-- Угловые кнопки -->
+                <button class="corner-button corner-top-left" onclick="showNotification('Клик по кнопке в левом верхнем углу')">Кнопка</button>
+                <button class="corner-button corner-top-right" onclick="showNotification('Клик по кнопке в правом верхнем углу')">Кнопка</button>
+                <button class="corner-button corner-bottom-left" onclick="showNotification('Клик по кнопке в левом нижнем углу')">Кнопка</button>
+                <button class="corner-button corner-bottom-right" onclick="showNotification('Клик по кнопке в правом нижнем углу')">Кнопка</button>
+
+                <!-- Дополнительные элементы для "шума" (не наезжают друг на друга, но могут быть рядом с угловыми кнопками) -->
+                <button class="noise-element noise-button" style="top: 80px; left: 180px;">Действие</button>
+                <input type="text" class="noise-element noise-input" placeholder="Введите текст" style="top: 80px; left: 350px;">
+                <div class="noise-element noise-text" style="top: 80px; left: 520px;">Текстовая метка</div>
+                <div class="noise-element noise-card" style="top: 80px; left: 690px;">Элемент формы</div>
+                
+                <button class="noise-element noise-button noise-button-small" style="top: 140px; left: 180px;">Мал</button>
+                <div class="noise-element" style="top: 140px; left: 280px;">
+                    <input type="checkbox" class="noise-checkbox" id="check1">
+                    <label class="noise-label" for="check1">Опция</label>
+                </div>
+                <input type="text" class="noise-element noise-input" placeholder="Поиск" style="top: 140px; left: 450px;">
+                <button class="noise-element noise-button" style="top: 140px; left: 620px;">Сохранить</button>
+                
+                <button class="noise-element noise-button noise-button-large" style="top: 200px; left: 180px;">Большая кнопка</button>
+                <div class="noise-element noise-card" style="top: 200px; left: 380px;">Карточка данных</div>
+                <input type="text" class="noise-element noise-input" placeholder="Имя" style="top: 200px; left: 550px;">
+                <div class="noise-element noise-text" style="top: 200px; left: 720px;">Статус</div>
+                
+                <div class="noise-element" style="top: 260px; left: 180px;">
+                    <input type="checkbox" class="noise-checkbox" id="check2">
+                    <label class="noise-label" for="check2">Согласен</label>
+                </div>
+                <button class="noise-element noise-button" style="top: 260px; left: 320px;">Отправить</button>
+                <div class="noise-element noise-card" style="top: 260px; left: 480px;">Блок контента</div>
+                <input type="text" class="noise-element noise-input" placeholder="Email" style="top: 260px; left: 650px;">
+                
+                <button class="noise-element noise-button noise-button-large" style="top: 320px; left: 180px;">Применить</button>
+                <div class="noise-element noise-text" style="top: 320px; left: 380px;">Информация</div>
+                <input type="text" class="noise-element noise-input" placeholder="Телефон" style="top: 320px; left: 550px;">
+                <button class="noise-element noise-button" style="top: 320px; left: 720px;">Отмена</button>
+                
+                <input type="text" class="noise-element noise-input" placeholder="Адрес" style="top: 380px; left: 180px;">
+                <button class="noise-element noise-button noise-button-small" style="top: 380px; left: 350px;">OK</button>
+                <div class="noise-element noise-card" style="top: 380px; left: 480px;">Данные формы</div>
+                <div class="noise-element noise-text" style="top: 380px; left: 650px;">Данные</div>
+                
+                <button class="noise-element noise-button" style="top: 440px; left: 180px;">Подтвердить</button>
+                <div class="noise-element" style="top: 440px; left: 320px;">
+                    <input type="checkbox" class="noise-checkbox" id="check3">
+                    <label class="noise-label" for="check3">Выбрать</label>
+                </div>
+                <input type="text" class="noise-element noise-input" placeholder="Комментарий" style="top: 440px; left: 480px;">
+                <button class="noise-element noise-button noise-button-small" style="top: 440px; left: 650px;">Да</button>
+                
+                <div class="noise-element noise-text" style="top: 500px; left: 180px;">Заметка</div>
+                <button class="noise-element noise-button" style="top: 500px; left: 320px;">Удалить</button>
+                <div class="noise-element noise-card" style="top: 500px; left: 480px;">Информация</div>
+                <input type="text" class="noise-element noise-input" placeholder="Код" style="top: 500px; left: 650px;">
+
+                <!-- Элементы по левой стороне между угловыми кнопками -->
+                <button class="noise-corner-like" style="top: 120px; left: 20px;">Кнопка</button>
+                <input type="text" class="noise-element noise-input" placeholder="Левый ввод" style="top: 180px; left: 20px;">
+                <div class="noise-element noise-text" style="top: 240px; left: 20px;">Левая метка</div>
+                <button class="noise-corner-like" style="top: 300px; left: 20px;">Кнопка</button>
+                <div class="noise-element noise-card" style="top: 360px; left: 20px;">Левая карточка</div>
+                <button class="noise-element noise-button" style="top: 420px; left: 20px;">Действие</button>
+                <div class="noise-element" style="top: 480px; left: 20px;">
+                    <input type="checkbox" class="noise-checkbox" id="check4">
+                    <label class="noise-label" for="check4">Левая опция</label>
+                </div>
+
+                <!-- Элементы по правой стороне между угловыми кнопками -->
+                <div class="noise-element noise-card" style="top: 120px; right: 20px;">Правая карточка</div>
+                <button class="noise-corner-like" style="top: 180px; right: 20px;">Кнопка</button>
+                <input type="text" class="noise-element noise-input" placeholder="Правый ввод" style="top: 240px; right: 20px;">
+                <button class="noise-element noise-button" style="top: 300px; right: 20px;">Применить</button>
+                <div class="noise-element noise-text" style="top: 360px; right: 20px;">Правая метка</div>
+                <button class="noise-corner-like" style="top: 420px; right: 20px;">Кнопка</button>
+                <div class="noise-element" style="top: 480px; right: 20px;">
+                    <input type="checkbox" class="noise-checkbox" id="check5">
+                    <label class="noise-label" for="check5">Правая опция</label>
+                </div>
+            </div>
         </div>
     </div>
 
