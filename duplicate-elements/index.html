@@ -51,7 +51,15 @@
             gap: 15px;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: space-between;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .controls-left {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         .controls-title {
@@ -75,6 +83,23 @@
 
         .btn-delete:hover {
             background: #c82333;
+        }
+
+        .btn-restore {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+            font-family: inherit;
+            margin-left: auto;
+        }
+
+        .btn-restore:hover {
+            background: #218838;
         }
 
         .btn-delete-small {
@@ -242,16 +267,19 @@
 
         <!-- Контролы над таблицей -->
         <div class="controls">
-            <span class="controls-title">Управление:</span>
-            <button class="btn-delete btn-delete-small" onclick="showNotification('Удалить (маленькая)')">Удалить</button>
-            <button class="btn-delete" onclick="showNotification('Удалить (обычная)')">Удалить</button>
-            <button class="btn-delete btn-delete-large" onclick="showNotification('Удалить (большая)')">Удалить</button>
-            <button class="btn-delete btn-delete-round" onclick="showNotification('Удалить (круглая)')">Удалить</button>
-            <button class="btn-delete btn-delete-icon" onclick="showNotification('Удалить (только иконка)')" title="Удалить">
-                <svg class="icon-trash" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-                </svg>
-            </button>
+            <div class="controls-left">
+                <span class="controls-title">Управление:</span>
+                <button class="btn-delete btn-delete-small" onclick="deleteTable()">Удалить</button>
+                <button class="btn-delete" onclick="deleteTable()">Удалить</button>
+                <button class="btn-delete btn-delete-large" onclick="deleteTable()">Удалить</button>
+                <button class="btn-delete btn-delete-round" onclick="deleteTable()">Удалить</button>
+                <button class="btn-delete btn-delete-icon" onclick="deleteTable()" title="Удалить">
+                    <svg class="icon-trash" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="btn-restore" onclick="restoreTable()">Восстановить таблицу</button>
         </div>
 
         <!-- Таблица с кнопками удалить -->
@@ -270,61 +298,61 @@
                         <td>a3f2</td>
                         <td>Метеорит</td>
                         <td>Основной проект разработки</td>
-                        <td><button class="btn-delete-table" onclick="showNotification('Удалить из таблицы (строка 1)')">Удалить</button></td>
+                        <td><button class="btn-delete-table" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>7b9c</td>
                         <td>Зонтик</td>
                         <td>Вспомогательный компонент системы</td>
-                        <td><button class="btn-delete-table btn-delete-table-small" onclick="showNotification('Удалить из таблицы (строка 2, маленькая)')">Удалить</button></td>
+                        <td><button class="btn-delete-table btn-delete-table-small" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>2d4e</td>
                         <td>Карандаш</td>
                         <td>Настройки рабочего окружения</td>
-                        <td><button class="btn-delete-table" onclick="showNotification('Удалить из таблицы (строка 3)')">Удалить</button></td>
+                        <td><button class="btn-delete-table" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>f8a1</td>
                         <td>Компас</td>
                         <td>Автоматизация процессов</td>
-                        <td><button class="btn-delete-table btn-delete-table-large" onclick="showNotification('Удалить из таблицы (строка 4, большая)')">Удалить</button></td>
+                        <td><button class="btn-delete-table btn-delete-table-large" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>5c7d</td>
                         <td>Фонарь</td>
                         <td>Базовая структура документа</td>
-                        <td><button class="btn-delete-table" onclick="showNotification('Удалить из таблицы (строка 5)')">Удалить</button></td>
+                        <td><button class="btn-delete-table" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>9e3b</td>
                         <td>Ключ</td>
                         <td>Внешние зависимости проекта</td>
-                        <td><button class="btn-delete-table btn-delete-table-small" onclick="showNotification('Удалить из таблицы (строка 6, маленькая)')">Удалить</button></td>
+                        <td><button class="btn-delete-table btn-delete-table-small" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>1a6f</td>
                         <td>Мост</td>
                         <td>Сборка библиотек и утилит</td>
-                        <td><button class="btn-delete-table" onclick="showNotification('Удалить из таблицы (строка 7)')">Удалить</button></td>
+                        <td><button class="btn-delete-table" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>c4d8</td>
                         <td>Пирамида</td>
                         <td>Расширение функциональности</td>
-                        <td><button class="btn-delete-table" onclick="showNotification('Удалить из таблицы (строка 8)')">Удалить</button></td>
+                        <td><button class="btn-delete-table" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>e2b5</td>
                         <td>Волна</td>
                         <td>Фоновый процесс обработки</td>
-                        <td><button class="btn-delete-table btn-delete-table-large" onclick="showNotification('Удалить из таблицы (строка 9, большая)')">Удалить</button></td>
+                        <td><button class="btn-delete-table btn-delete-table-large" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                     <tr>
                         <td>8f3a</td>
                         <td>Кристалл</td>
                         <td>Переиспользуемый элемент интерфейса</td>
-                        <td><button class="btn-delete-table" onclick="showNotification('Удалить из таблицы (строка 10)')">Удалить</button></td>
+                        <td><button class="btn-delete-table" onclick="deleteRow(this)">Удалить</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -352,6 +380,9 @@
     <div class="notification" id="notification"></div>
 
     <script>
+        // Сохраняем исходное состояние таблицы
+        const originalTableHTML = document.querySelector('.table-wrapper').outerHTML;
+
         function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
@@ -360,6 +391,45 @@
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 2000);
+        }
+
+        // Удаление строки таблицы
+        function deleteRow(button) {
+            const row = button.closest('tr');
+            if (row) {
+                row.remove();
+                showNotification('Строка удалена');
+            }
+        }
+
+        // Удаление всей таблицы
+        function deleteTable() {
+            const tableWrapper = document.querySelector('.table-wrapper');
+            if (tableWrapper) {
+                tableWrapper.remove();
+                showNotification('Таблица удалена');
+            }
+        }
+
+        // Восстановление таблицы в исходное состояние
+        function restoreTable() {
+            const controls = document.querySelector('.controls');
+            const existingTable = document.querySelector('.table-wrapper');
+            
+            // Если таблица уже существует, удаляем её
+            if (existingTable) {
+                existingTable.remove();
+            }
+            
+            // Создаем временный контейнер для парсинга HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalTableHTML;
+            const restoredTable = tempDiv.firstElementChild;
+            
+            // Вставляем таблицу после блока управления
+            controls.insertAdjacentElement('afterend', restoredTable);
+            
+            showNotification('Таблица восстановлена');
         }
     </script>
 </body>
