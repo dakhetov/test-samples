@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Позиции в сетке - Test Samples</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .grid-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .grid-item {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .grid-item:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .grid-item.clicked {
+            background: #28a745;
+        }
+
+        .example-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← Назад</a>
+
+        <div class="section">
+            <h2 class="section-title">Позиции элементов в сетке</h2>
+
+            <div class="example-title">Сетка 4x4 (первая строка, второй столбец, третья строка и т.д.)</div>
+            <div class="grid-container" id="grid1">
+                <div class="grid-item" onclick="handleGridClick(this, 1, 1)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 1, 2)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 1, 3)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 1, 4)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 2, 1)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 2, 2)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 2, 3)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 2, 4)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 3, 1)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 3, 2)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 3, 3)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 3, 4)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 4, 1)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 4, 2)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 4, 3)">Элемент</div>
+                <div class="grid-item" onclick="handleGridClick(this, 4, 4)">Элемент</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        function handleGridClick(element, row, col) {
+            // Убираем класс clicked со всех элементов
+            const allItems = document.querySelectorAll('.grid-item');
+            allItems.forEach(item => {
+                item.classList.remove('clicked');
+            });
+
+            // Добавляем класс clicked к кликнутому элементу
+            element.classList.add('clicked');
+
+            const rowNames = {
+                1: 'первой',
+                2: 'второй',
+                3: 'третьей',
+                4: 'четвертой'
+            };
+
+            const colNames = {
+                1: 'первом',
+                2: 'втором',
+                3: 'третьем',
+                4: 'четвертом'
+            };
+
+            showNotification(`Клик по элементу в ${rowNames[row]} строке, ${colNames[col]} столбце`);
+        }
+    </script>
+</body>
+</html>
+

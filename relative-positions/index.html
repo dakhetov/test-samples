@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Относительные позиции - Test Samples</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .position-container {
+            position: relative;
+            min-height: 500px;
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .reference-object {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .position-button {
+            position: absolute;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        .position-button:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Позиции относительно центрального объекта */
+        /* Объект находится в центре (50%, 50%), имеет padding: 25px 35px, примерно 200px ширина, 70px высота */
+        /* Кнопка имеет padding: 12px 24px, примерно 100px ширина, 40px высота */
+        /* Размещаем кнопки рядом с объектом с зазором ~15px, чтобы не наезжали */
+        .position-button.above {
+            top: calc(50% - 85px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .position-button.below {
+            top: calc(50% + 70px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .position-button.left {
+            top: 50%;
+            left: calc(50% - 165px);
+            transform: translateY(-50%);
+        }
+
+        .position-button.right {
+            top: 50%;
+            left: calc(50% + 165px);
+            transform: translateY(-50%);
+        }
+
+        .position-button.left-above {
+            top: calc(50% - 85px);
+            left: calc(50% - 165px);
+            transform: translate(-50%, -50%);
+        }
+
+        .position-button.right-above {
+            top: calc(50% - 85px);
+            left: calc(50% + 165px);
+            transform: translate(-50%, -50%);
+        }
+
+        .position-button.left-below {
+            top: calc(50% + 70px);
+            left: calc(50% - 165px);
+            transform: translate(-50%, -50%);
+        }
+
+        .position-button.right-below {
+            top: calc(50% + 70px);
+            left: calc(50% + 165px);
+            transform: translate(-50%, -50%);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .position-container {
+                min-height: 400px;
+                padding: 30px 20px;
+            }
+
+            .position-button {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .reference-object {
+                padding: 20px 25px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← Назад</a>
+
+        <div class="section">
+            <h2 class="section-title">Относительные позиции элементов</h2>
+            <div class="position-container">
+                <div class="reference-object">Объект</div>
+                <button class="position-button above" onclick="showNotification('Клик по кнопке сверху от объекта')">Кнопка</button>
+                <button class="position-button below" onclick="showNotification('Клик по кнопке снизу от объекта')">Кнопка</button>
+                <button class="position-button left" onclick="showNotification('Клик по кнопке слева от объекта')">Кнопка</button>
+                <button class="position-button right" onclick="showNotification('Клик по кнопке справа от объекта')">Кнопка</button>
+                <button class="position-button left-above" onclick="showNotification('Клик по кнопке в левом верхнем углу от объекта')">Кнопка</button>
+                <button class="position-button right-above" onclick="showNotification('Клик по кнопке в правом верхнем углу от объекта')">Кнопка</button>
+                <button class="position-button left-below" onclick="showNotification('Клик по кнопке в левом нижнем углу от объекта')">Кнопка</button>
+                <button class="position-button right-below" onclick="showNotification('Клик по кнопке в правом нижнем углу от объекта')">Кнопка</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+

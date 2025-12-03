@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Последовательности и сравнения - Test Samples</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        /* Первая строка: кнопки разного размера по порядку */
+        .size-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-size {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-size:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-size-large {
+            padding: 20px 40px;
+            font-size: 18px;
+        }
+
+        .btn-size-medium {
+            padding: 15px 30px;
+            font-size: 16px;
+        }
+
+        .btn-size-small {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .btn-size-tiny {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        /* Вторая строка: три одинаковые кнопки */
+        .three-buttons-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-same {
+            flex: 1;
+            min-width: 150px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-same:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Третий вариант: объект в центре с кнопками слева и справа */
+        .center-object-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .center-object {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .btn-side {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-side:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Четвертая строка: последовательность карточек */
+        .cards-row {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 150px;
+            max-width: 180px;
+            flex: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .card.clicked {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .card-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card.clicked .card-logo {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            color: #333;
+        }
+
+        .card.clicked .card-title {
+            color: white;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 500;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .three-buttons-row {
+                flex-direction: column;
+            }
+
+            .btn-same {
+                width: 100%;
+            }
+
+            .center-object-row {
+                flex-direction: column;
+            }
+
+            .cards-row {
+                flex-direction: column;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← Назад</a>
+
+        <!-- Первая строка: кнопки разного размера по порядку -->
+        <div class="section">
+            <h2 class="section-title">1. Кнопки разного размера (от больших к маленьким)</h2>
+            <div class="size-row">
+                <button class="btn-size btn-size-large" onclick="showNotification('Клик по большой кнопке')">Кнопка</button>
+                <button class="btn-size btn-size-medium" onclick="showNotification('Клик по средней кнопке')">Кнопка</button>
+                <button class="btn-size btn-size-small" onclick="showNotification('Клик по маленькой кнопке')">Кнопка</button>
+                <button class="btn-size btn-size-tiny" onclick="showNotification('Клик по очень маленькой кнопке')">Кнопка</button>
+            </div>
+        </div>
+
+        <!-- Вторая строка: три одинаковые кнопки -->
+        <div class="section">
+            <h2 class="section-title">2. Три одинаковые кнопки (слева, посередине, справа)</h2>
+            <div class="three-buttons-row">
+                <button class="btn-same" onclick="showNotification('Клик по кнопке слева')">Одинаковая кнопка</button>
+                <button class="btn-same" onclick="showNotification('Клик по кнопке посередине')">Одинаковая кнопка</button>
+                <button class="btn-same" onclick="showNotification('Клик по кнопке справа')">Одинаковая кнопка</button>
+            </div>
+        </div>
+
+        <!-- Третий вариант: объект в центре с кнопками слева и справа -->
+        <div class="section">
+            <h2 class="section-title">3. Объект в центре с кнопками слева и справа</h2>
+            <div class="center-object-row">
+                <button class="btn-side" onclick="showNotification('Клик по кнопке слева от объекта')">Кнопка</button>
+                <div class="center-object">Центральный объект</div>
+                <button class="btn-side" onclick="showNotification('Клик по кнопке справа от объекта')">Кнопка</button>
+            </div>
+        </div>
+
+        <!-- Четвертая строка: последовательность карточек -->
+        <div class="section">
+            <h2 class="section-title">4. Последовательность карточек (кликните на карточку)</h2>
+            <div class="cards-row">
+                <div class="card" onclick="handleCardClick(this, 1)">
+                    <div class="card-logo">●</div>
+                    <div class="card-title">Карточка последовательности</div>
+                </div>
+                <div class="card" onclick="handleCardClick(this, 2)">
+                    <div class="card-logo">●</div>
+                    <div class="card-title">Карточка последовательности</div>
+                </div>
+                <div class="card" onclick="handleCardClick(this, 3)">
+                    <div class="card-logo">●</div>
+                    <div class="card-title">Карточка последовательности</div>
+                </div>
+                <div class="card" onclick="handleCardClick(this, 4)">
+                    <div class="card-logo">●</div>
+                    <div class="card-title">Карточка последовательности</div>
+                </div>
+                <div class="card" onclick="handleCardClick(this, 5)">
+                    <div class="card-logo">●</div>
+                    <div class="card-title">Карточка последовательности</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        function handleCardClick(cardElement, cardNumber) {
+            // Убираем класс clicked со всех карточек
+            const allCards = document.querySelectorAll('.card');
+            allCards.forEach(card => {
+                card.classList.remove('clicked');
+            });
+
+            // Добавляем класс clicked к кликнутой карточке
+            cardElement.classList.add('clicked');
+
+            // Показываем уведомление
+            const cardNames = {
+                1: 'первую',
+                2: 'вторую',
+                3: 'третью',
+                4: 'четвертую',
+                5: 'пятую'
+            };
+            showNotification(`Клик по ${cardNames[cardNumber]} карточке`);
+        }
+    </script>
+</body>
+</html>
+
