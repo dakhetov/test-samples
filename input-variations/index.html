@@ -55,14 +55,20 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Пример 1: Стандартное поле с рамкой */
+        /* Пример 1: Стандартное поле с рамкой (с авто-расширением) */
         .input-standard {
-            width: 100%;
+            width: 80%;
             padding: 12px 15px;
             border: 2px solid #ddd;
             border-radius: 6px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            resize: none;
+            overflow: hidden;
+            min-height: 48px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            white-space: pre-wrap;
         }
 
         .input-standard:focus {
@@ -676,7 +682,7 @@
         <div class="examples-grid">
             <!-- Пример 1: Стандартное поле с рамкой -->
             <div class="input-wrapper">
-                <input type="text" class="input-standard" placeholder="Введите текст">
+                <textarea class="input-standard" placeholder="Введите текст" rows="1"></textarea>
             </div>
 
             <!-- Пример 2: Поле без рамки, только лейбл -->
@@ -857,6 +863,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Автоматическое изменение высоты textarea для первого поля
+        const autoResizeTextarea = document.querySelector('.input-standard');
+        if (autoResizeTextarea) {
+            // Функция для автоматического изменения высоты
+            function autoResize() {
+                autoResizeTextarea.style.height = 'auto';
+                autoResizeTextarea.style.height = (autoResizeTextarea.scrollHeight) + 'px';
+            }
+
+            // Применяем при загрузке страницы
+            autoResize();
+
+            // Применяем при вводе текста
+            autoResizeTextarea.addEventListener('input', autoResize);
+        }
+    </script>
 </body>
 </html>
 
