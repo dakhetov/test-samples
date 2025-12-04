@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поле ввода в стиле Draft.js - Test Samples</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧪</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .example-wrapper {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .example-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .example-description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Поле ввода в стиле Draft.js (contenteditable div) */
+        .draft-editor-wrapper {
+            width: 100%;
+            position: relative;
+        }
+
+        .draft-editor {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+            cursor: text;
+            transition: border-color 0.3s;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            line-height: 1.5714285714285714;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: rgba(0, 0, 0, 0.88);
+            resize: vertical;
+            overflow: hidden;
+        }
+
+        .draft-editor:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .draft-editor:empty:before {
+            content: attr(data-placeholder);
+            color: rgba(0, 0, 0, 0.45);
+            pointer-events: none;
+        }
+
+        .draft-editor[contenteditable="true"] {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        .draft-editor[contenteditable="true"]:focus {
+            outline: none;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-box h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .info-box p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .info-box code {
+            background: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">← Назад</a>
+
+        <div class="example-wrapper">
+            <h1 class="example-title">Поле ввода в стиле Draft.js</h1>
+            <p class="example-description">
+                Пример поля ввода, реализованного через contenteditable div, как в редакторе Draft.js.
+                Поле автоматически расширяется по высоте при вводе текста, поддерживает перенос слов
+                и отображает весь введенный текст.
+            </p>
+
+            <div class="draft-editor-wrapper">
+                <div class="draft-editor" 
+                     contenteditable="true" 
+                     role="textbox" 
+                     spellcheck="false" 
+                     data-placeholder="Введите текст...">
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Особенности:</h4>
+                <p>
+                    • Поле реализовано как <code>contenteditable div</code>, а не стандартный <code>input</code> или <code>textarea</code><br>
+                    • Автоматическое изменение высоты при вводе текста<br>
+                    • Поддержка переноса слов и многострочного текста<br>
+                    • Placeholder отображается через CSS псевдоэлемент <code>:empty:before</code><br>
+                    • Все введенное содержимое всегда видно в поле
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Автоматическое изменение высоты для Draft.js стиля поля ввода
+        const draftEditor = document.querySelector('.draft-editor');
+        if (draftEditor) {
+            function autoResizeDraft() {
+                draftEditor.style.height = 'auto';
+                draftEditor.style.height = Math.max(48, draftEditor.scrollHeight) + 'px';
+            }
+
+            // Применяем при загрузке страницы
+            autoResizeDraft();
+
+            // Применяем при вводе текста
+            draftEditor.addEventListener('input', autoResizeDraft);
+            draftEditor.addEventListener('paste', function() {
+                setTimeout(autoResizeDraft, 0);
+            });
+
+            // Обработка placeholder для contenteditable
+            draftEditor.addEventListener('focus', function() {
+                if (this.textContent.trim() === '') {
+                    this.textContent = '';
+                }
+            });
+
+            draftEditor.addEventListener('blur', function() {
+                if (this.textContent.trim() === '') {
+                    this.textContent = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
